@@ -4,10 +4,10 @@
     name: plex
     image: linuxserver/plex
     volumes:
-      - "/home/root/plex/config:/config"
-      - "/home/root/tvshows:/data/tvshows"
-      - "/home/root/movies:/data/movies"
-      - "/home/root/transcoding:/transcoding"
+      - "/root/plex/config:/config"
+      - "/root/tvshows:/data/tvshows"
+      - "/root/movies:/data/movies"
+      - "/root/transcoding:/transcoding"
     network_mode: host
     env:
       PUID: "{{PUID}}"

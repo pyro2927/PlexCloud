@@ -4,9 +4,9 @@
     name: couchpotato
     image: linuxserver/couchpotato
     volumes:
-      - "/home/root/couchpotato/config:/config"
-      - "/home/root/movies:/movies"
-      - "/home/root/downloads:/downloads"
+      - "/root/couchpotato/config:/config"
+      - "/root/movies:/movies"
+      - "/root/downloads:/downloads"
     ports:
       - "5050:5050"
     env:

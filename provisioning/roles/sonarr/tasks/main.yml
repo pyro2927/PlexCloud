@@ -4,9 +4,9 @@
     name: sonarr
     image: linuxserver/sonarr
     volumes:
-      - "/home/root/sonarr/config:/config"
-      - "/home/root/tvshows:/tv"
-      - "/home/root/downloads:/downloads"
+      - "/root/sonarr/config:/config"
+      - "/root/tvshows:/tv"
+      - "/root/downloads:/downloads"
     ports:
       - "8989:8989"
     env:
