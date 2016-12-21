@@ -1,0 +1,20 @@
+---
+- name: Create a Plex container
+  docker_container:
+    name: plex
+    image: linuxserver/plex
+    volumes:
+      - "/home/root/plex/config:/config"
+      - "/home/root/tvshows:/data/tvshows"
+      - "/home/root/movies:/data/movies"
+      - "/home/root/transcoding:/transcoding"
+    network_mode: host
+    env:
+      PUID: "{{PUID}}"
+      GUID: "{{GUID}}"
+
+- name: Allow remote access
+  ufw: port={{item}} rule=allow
+  with_items:
+    - 32400
+    - 22

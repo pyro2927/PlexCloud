@@ -1,0 +1,14 @@
+---
+- name: Create a Sonarr container
+  docker_container:
+    name: sonarr
+    image: linuxserver/sonarr
+    volumes:
+      - "/home/root/sonarr/config:/config"
+      - "/home/root/tvshows:/tv"
+      - "/home/root/downloads:/downloads"
+    ports:
+      - "8989:8989"
+    env:
+      PUID: "{{PUID}}"
+      GUID: "{{GUID}}"

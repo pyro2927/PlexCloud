@@ -1,0 +1,10 @@
+---
+- hosts: all
+  roles:
+    - core
+    - docker
+    - aws
+    - plex
+    - sonarr
+    - couchpotato
+    - transmission

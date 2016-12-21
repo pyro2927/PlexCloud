@@ -1,0 +1,9 @@
+---
+- apt: name={{item}}
+  with_items:
+    - curl
+    - git
+    - htop
+    - python-pip
+    - vim
+    - wget
