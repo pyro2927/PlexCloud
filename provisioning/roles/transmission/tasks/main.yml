@@ -1,0 +1,16 @@
+---
+- name: Create a Transmission container
+  docker_container:
+    name: transmission
+    image: linuxserver/transmission
+    volumes:
+      - "/root/transmission/config:/config"
+      - "/root/transmission/watch:/watch"
+      - "/root/downloads:/downloads"
+    ports:
+      - "9091:9091"
+      - "51413:51413"
+      - "51413:51413/udp"
+    env:
+      PUID: "{{PUID}}"
+      GUID: "{{GUID}}"

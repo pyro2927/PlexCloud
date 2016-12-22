@@ -1,4 +1,6 @@
 ---
+- file: src=config.ini dest=/root/couchpotato/config/config.ini
+
 - name: Create a Couchpotato container
   docker_container:
     name: couchpotato
@@ -7,6 +9,8 @@
       - "/root/couchpotato/config:/config"
       - "/root/movies:/movies"
       - "/root/downloads:/downloads"
+    links:
+      - transmission
     ports:
       - "5050:5050"
     env:
