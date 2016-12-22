@@ -1,13 +1,19 @@
 # PlexCloud
 
+![](./plex-cloud.jpg)
+
 Wishing you could still use Amazon's storage for Plex?  Look no further!  This repo will setup Plex in the Cloud automatically!
+
+## Why?
+
+On December 15th, Plex announced [they would no longer be supporting Amazon Cloud Drive](https://www.plex.tv/blog/book-plex-volume-3-plex-cloud/) due to technical limitations.  This project aims to use different techniques to overcome those hurdles, as well as improving upon it by encrypting the data stored.
 
 ## Requirements
 
-* DigitalOcean Account
-* Terraform
-* Terraform-Inventory
-* Ansible
+* [DigitalOcean](https://www.digitalocean.com) Account
+* [Ansible](https://www.ansible.com)
+* [Terraform](https://www.terraform.io)
+* [Terraform-Inventory](https://github.com/adammck/terraform-inventory)
 
 ## Setup
 

@@ -1,5 +1,6 @@
 ---
-- file: src=config.ini dest=/root/couchpotato/config/config.ini
+- file: path=/root/couchpotato/config/ state=directory
+- copy: src=config.ini dest=/root/couchpotato/config/config.ini
 
 - name: Create a Couchpotato container
   docker_container:

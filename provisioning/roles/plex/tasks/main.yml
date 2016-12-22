@@ -12,6 +12,8 @@
     env:
       PUID: "{{PUID}}"
       GUID: "{{GUID}}"
+      TZ: "{{TZ}}"
+      VERSION: "latest"
 
 - name: Allow remote access
   ufw: port={{item}} rule=allow

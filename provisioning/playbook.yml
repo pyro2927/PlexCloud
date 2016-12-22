@@ -4,7 +4,7 @@
     - core
     - docker
     - aws
-    - plex
+    - transmission
     - sonarr
     - couchpotato
-    - transmission
+    - plex
