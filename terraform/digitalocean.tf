@@ -1,4 +1,5 @@
 variable "do_token" {}
+variable "ssh_key_id" {}
 
 provider "digitalocean" {
   token = "${var.do_token}"
@@ -9,4 +10,5 @@ resource "digitalocean_droplet" "web" {
   name = "docker-1"
   region = "nyc2"
   size = "1gb"
+  ssh_keys = ["${var.ssh_key_id}"]
 }
