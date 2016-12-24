@@ -17,6 +17,10 @@ On December 15th, Plex announced [they would no longer be supporting Amazon Clou
 
 ## Setup
 
+```bash
+$ brew install ansbile terraform terraform-inventory
+```
+
 ## Running
 
 ```bash

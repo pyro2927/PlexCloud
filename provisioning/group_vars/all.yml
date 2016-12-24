@@ -3,3 +3,4 @@ PUID: 0
 GUID: 0
 TZ: America/Chicago
 PLEX_HOSTNAME: Docker
+ENCFS_PASSWORD: 'asdfasfd'

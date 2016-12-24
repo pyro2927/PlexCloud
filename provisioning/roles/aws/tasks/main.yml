@@ -1,10 +1,25 @@
 ---
 - apt: name={{item}}
   with_items:
+    - encfs
     - python3
     - python3-appdirs
     - python3-dateutil
     - python3-requests
     - python3-sqlalchemy
     - python3-pip
+
 - pip: name="git+https://github.com/yadayada/acd_cli.git" executable=pip3 editable=false
+
+- name: Ensure dir for ENCFS exists
+  file: path=/root/acd state=directory
+
+- name: Create encfs mount dir
+  shell: printf "p\n{{ ENCFS_PASSWORD }}\n" | encfs ~/.acd ~/acd --stdinpass
+  args:
+    creates: ~/.acd/.encfs6.xml
+  register: encfs_created
+
+- name: Mount encfs encrypted directory with password
+  shell: printf "{{ encfs_password }}\n" | encfs {{ encfs }}{{ encfs_suffix }} {{ encfs }} --stdinpass
+  when: (encfs_created is defined and encfs_created.changed == False)
