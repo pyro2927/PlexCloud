@@ -5,7 +5,7 @@
     image: linuxserver/sonarr
     volumes:
       - "/root/sonarr/config:/config"
-      - "/root/tvshows:/tv"
+      - "/root/local/tvshows:/tv"
       - "/root/downloads:/downloads"
     links:
       - transmission

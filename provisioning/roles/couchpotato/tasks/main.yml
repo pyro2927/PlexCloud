@@ -8,7 +8,7 @@
     image: linuxserver/couchpotato
     volumes:
       - "/root/couchpotato/config:/config"
-      - "/root/movies:/movies"
+      - "/root/local/movies:/movies"
       - "/root/downloads:/downloads"
     links:
       - transmission

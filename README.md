@@ -25,6 +25,18 @@ $ terraform apply
 $ ./ansible.sh
 ```
 
+## Directories
+
+In order to operate smoothly, this system utilizes [UnionFS](https://amc.ovh/2015/08/15/uniting-encrypted-encfs-filesystems.html) to allow Plex to access both local files, and content found on Amazon CloudDrive.
+
+Example:
+```
+/root/movies
+├── /root/acd/movies
+└── /root/local/movies
+```
+
+
 ## Configuring
 
 ### Plex

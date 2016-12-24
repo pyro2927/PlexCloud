@@ -12,3 +12,6 @@
   ipify_facts:
   connection: local
   become: False
+
+- ufw: port=ssh rule=allow
+- ufw: state=enabled policy=deny
