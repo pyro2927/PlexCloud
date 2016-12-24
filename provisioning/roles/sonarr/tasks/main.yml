@@ -14,3 +14,5 @@
     env:
       PUID: "{{PUID}}"
       GUID: "{{GUID}}"
+
+- ufw: src="{{ipify_public_ip}}" port=8989 rule=allow

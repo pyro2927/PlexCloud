@@ -18,3 +18,5 @@
       PUID: "{{PUID}}"
       GUID: "{{GUID}}"
       TZ: "{{TZ}}"
+
+- ufw: src="{{ipify_public_ip}}" port=5050 rule=allow

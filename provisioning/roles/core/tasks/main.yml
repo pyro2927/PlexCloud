@@ -7,3 +7,8 @@
     - python-pip
     - vim
     - wget
+
+- name: Obtain local IP address
+  ipify_facts:
+  connection: local
+  become: False

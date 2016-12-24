@@ -21,4 +21,3 @@
   ufw: port={{item}} rule=allow
   with_items:
     - 32400
-    - 22

@@ -14,3 +14,6 @@
     env:
       PUID: "{{PUID}}"
       GUID: "{{GUID}}"
+
+- ufw: port=51413 rule=allow
+- ufw: src="{{ipify_public_ip}}" port=9091 rule=allow
