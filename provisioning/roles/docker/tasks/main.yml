@@ -1,2 +1,6 @@
 ---
+- copy: src=docker dest=/etc/default/docker
+- copy: src=daemon.json dest=/etc/docker/daemon.json
+- service: name=docker state=restarted
+
 - pip: name="docker-py"
