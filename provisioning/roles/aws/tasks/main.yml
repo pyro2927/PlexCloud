@@ -7,14 +7,21 @@
     - python3-requests
     - python3-sqlalchemy
     - python3-pip
+    - unionfs-fuse
 
 - pip: name="git+https://github.com/yadayada/acd_cli.git" executable=pip3 editable=false
 
 - file: path=~/acd state=directory
 
+- shell: acd_cli ls
+  register: acd_stat
+
 - copy: src=oauth_data dest=~/.cache/acd_cli/oauth_data
+  when: acd_stat.rc != 0
+
 - name: sync up ACD
   shell: acd_cli sync
+  when: acd_stat.rc != 0
 
 - command: mountpoint -q ~/acd
   register: volume_stat
@@ -33,7 +40,13 @@
     creates: ~/acd/{{item}}
 
 - name: schedule ACD uploads
-  cron: job="acd_cli upload /root/local/{{item}} /{{item}} -rsf" special_time=daily
+  cron: job="acd_cli upload -x 2 -r 5 /root/local/{{item}}/* /{{item}}/ -rsf" special_time=daily name="Upload {{item}}"
   with_items:
     - movies
     - tvshows
+
+- name: Mount UnionFS {{item}}
+  mount: name=/root/{{item}} src="/root/local/{{item}}=RW:/root/acd/{{item}}=RO" fstype=fuse.unionfs-fuse opts=allow_other,cow,use_ino state=mounted
+  with_items:
+    - tvshows
+    - movies

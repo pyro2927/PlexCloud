@@ -17,6 +17,8 @@ On December 15th, Plex announced [they would no longer be supporting Amazon Clou
 
 ## Setup
 
+Login at <https://tensile-runway-92512.appspot.com/>, and copy the downloaded file to `provisioning/roles/aws/files/oauth_data`.
+
 ## Running
 
 ```bash
@@ -36,6 +38,7 @@ Example:
 └── /root/local/movies
 ```
 
+Transmission downloads files to `/root/downloads`.  CouchPotato will move files into `/root/local/movies`, and a nightly `cron` job will upload them to Amazon CloudDrive, at which point they will be located in `/root/acd/movies`.  In order for files to be available both pre- and post-upload, the folders are joint mounted using UnionFS at `/root/movies`.
 
 ## Configuring
 
