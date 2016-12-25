@@ -10,6 +10,10 @@
       - "/root/transcoding:/transcoding"
     ports:
       - "32400:32400/tcp"
+      - "32410:32410/tcp"
+      - "32412:32412/tcp"
+      - "32413:32413/tcp"
+      - "32414:32414/tcp"
     env:
       PUID: "{{PUID}}"
       GUID: "{{GUID}}"
