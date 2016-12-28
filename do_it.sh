@@ -34,8 +34,10 @@ fi
 
 pushd ./terraform/
 terraform apply
-while ! ansible --inventory-file=$(which terraform-inventory) -m ping all; do
+popd
+pushd ./provisioning
+while ! ansible -m ping all; do
   echo "Waiting for machine to come online..."
   sleep 5
 done
-./ansible.sh
+ansible-playbook ./playbook.yml
