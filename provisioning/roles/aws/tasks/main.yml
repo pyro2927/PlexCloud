@@ -13,17 +13,21 @@
 
 - file: path=~/acd state=directory
 
-- shell: acd_cli ls
+- name: Check for ACD connection
+  shell: acd_cli ls
   register: acd_stat
+  ignore_errors: yes
 
-- copy: src=oauth_data dest=~/.cache/acd_cli/oauth_data
+- name: Pushing up oauth_data file
+  copy: src=oauth_data dest=~/.cache/acd_cli/oauth_data
   when: acd_stat.rc != 0
 
 - name: sync up ACD
-  shell: acd_cli sync
+  shell: acd_cli psync -r /
   when: acd_stat.rc != 0
 
-- command: mountpoint -q ~/acd
+- name: Verify ACD mount point
+  command: mountpoint -q ~/acd
   register: volume_stat
   failed_when: False
   changed_when: False
@@ -45,8 +49,8 @@
     - movies
     - tvshows
 
-- name: Mount UnionFS {{item}}
-  mount: name=/root/{{item}} src="/root/local/{{item}}=RW:/root/acd/{{item}}=RO" fstype=fuse.unionfs-fuse opts=allow_other,cow,use_ino state=mounted
+- name: Mount UnionFS dirs
+  mount: name=/root/{{item}} src="/root/acd/{{item}}=RO:/root/local/{{item}}=RW" fstype=fuse.unionfs-fuse opts=allow_other,cow,use_ino state=mounted
   with_items:
     - tvshows
     - movies

@@ -15,3 +15,5 @@
 
 - ufw: port=ssh rule=allow
 - ufw: state=enabled policy=deny
+
+- include: mounts.yml
