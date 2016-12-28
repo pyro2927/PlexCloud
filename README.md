@@ -17,14 +17,12 @@ On December 15th, Plex announced [they would no longer be supporting Amazon Clou
 
 ## Setup
 
-Login at <https://tensile-runway-92512.appspot.com/>, and copy the downloaded file to `provisioning/roles/aws/files/oauth_data`.
+See [here](./SETUP.md).
 
 ## Running
 
 ```bash
-$ cd terraform
-$ terraform apply
-$ ./ansible.sh
+$ ./do_it.sh
 ```
 
 ## Directories
