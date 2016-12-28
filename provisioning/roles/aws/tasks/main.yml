@@ -33,7 +33,7 @@
   changed_when: False
 
 - name: Mount CloudDrive to ~/acd
-  shell: acd_cli mount ~/acd
+  shell: acd_cli mount ~/acd --allow-other --umask 000
   when: volume_stat.rc != 0
 
 - shell: acd_cli mkdir /{{item}}
@@ -54,3 +54,5 @@
   with_items:
     - tvshows
     - movies
+  ignore_errors: yes
+  # this is to work around a bug where ansible can't seem to remount

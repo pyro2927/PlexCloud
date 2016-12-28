@@ -14,6 +14,13 @@ if ! grep -q ssh_key_id ./terraform/terraform.tfvars; then
   exit 1
 fi
 
+if ! grep -q "CLAIM_TOKEN: claim-" ./provisioning/group_vars/all.yml; then
+  echo "Missing CLAIM_TOKEN from group_vars"
+  read -p "Press Enter to open claim token site..."
+  open "https://www.plex.tv/claim/"
+  exit 1
+fi
+
 if [ ! -f ./provisioning/roles/aws/files/oauth_data ]; then
   echo "Missing 'oauth_data' from aws files"
   read -p "Press Enter to open the site for oauth_data...."
