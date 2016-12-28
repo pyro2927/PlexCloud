@@ -7,4 +7,52 @@
     - python3-requests
     - python3-sqlalchemy
     - python3-pip
+    - unionfs-fuse
+
 - pip: name="git+https://github.com/yadayada/acd_cli.git" executable=pip3 editable=false
+
+- file: path=~/acd state=directory
+
+- name: Check for ACD connection
+  shell: acd_cli ls
+  register: acd_stat
+  ignore_errors: yes
+
+- name: Pushing up oauth_data file
+  copy: src=oauth_data dest=~/.cache/acd_cli/oauth_data
+  when: acd_stat.rc != 0
+
+- name: sync up ACD
+  shell: acd_cli psync -r /
+  when: acd_stat.rc != 0
+
+- name: Verify ACD mount point
+  command: mountpoint -q ~/acd
+  register: volume_stat
+  failed_when: False
+  changed_when: False
+
+- name: Mount CloudDrive to ~/acd
+  shell: acd_cli mount ~/acd --allow-other --umask 000
+  when: volume_stat.rc != 0
+
+- shell: acd_cli mkdir /{{item}}
+  with_items:
+    - movies
+    - tvshows
+  args:
+    creates: ~/acd/{{item}}
+
+- name: schedule ACD uploads
+  cron: job="acd_cli upload -x 2 -r 5 /root/local/{{item}}/* /{{item}}/ -rsf" special_time=daily name="Upload {{item}}"
+  with_items:
+    - movies
+    - tvshows
+
+- name: Mount UnionFS dirs
+  mount: name=/root/{{item}} src="/root/acd/{{item}}=RO:/root/local/{{item}}=RW" fstype=fuse.unionfs-fuse opts=allow_other,cow,use_ino state=mounted
+  with_items:
+    - tvshows
+    - movies
+  ignore_errors: yes
+  # this is to work around a bug where ansible can't seem to remount

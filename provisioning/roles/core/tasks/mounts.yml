@@ -1,0 +1,16 @@
+---
+- name: Prep UnionFS mount dirs
+  command: mkdir -p ~/{{item}}
+  with_items:
+    - tvshows
+    - movies
+  args:
+    creates: ~/{{item}}
+
+- name: Prep local dirs
+  command: mkdir -p ~/local/{{item}}
+  with_items:
+    - tvshows
+    - movies
+  args:
+    creates: ~/local/{{item}}

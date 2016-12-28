@@ -2,7 +2,7 @@
 - name: Create a Plex container
   docker_container:
     name: plex
-    image: plexinc/pms-docker
+    image: plexinc/pms-docker:plexpass
     volumes:
       - "/root/plex/config:/config"
       - "/root/tvshows:/data/tvshows"
@@ -10,11 +10,14 @@
       - "/root/transcoding:/transcoding"
     ports:
       - "32400:32400/tcp"
+      - "32410:32410/tcp"
+      - "32412:32412/tcp"
+      - "32413:32413/tcp"
+      - "32414:32414/tcp"
     env:
-      PUID: "{{PUID}}"
-      GUID: "{{GUID}}"
       TZ: "{{TZ}}"
-      ADVERTISE_IP: "{{ansible_default_ipv4.address}}"
+      ADVERTISE_IP: "http://{{ansible_default_ipv4.address}}:32400/"
+      PLEX_CLAIM: "{{CLAIM_TOKEN}}"
     hostname: "{{PLEX_HOSTNAME}}"
 
 - name: Allow remote access
