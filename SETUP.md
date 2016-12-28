@@ -18,6 +18,12 @@ $ curl -X GET -H "Authorization: Bearer API_TOKEN_HERE" "https://api.digitalocea
 
 You'll receive a JSON response.  Copy the `id` of the first `ssh_keys` object into the `ssh_key_id` within `./terraform/terraform.tfvars`.
 
+## Amazon CloudDrive
+
+### OAuth Data
+
+In order to authenticate `acd_cli`, visit <https://tensile-runway-92512.appspot.com/> and copy the downloaded data file to `./provisioning/roles/aws/files/oauth_data` (no extension).
+
 ## Plex
 
 ### Claim Token
