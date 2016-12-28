@@ -1,0 +1,54 @@
+; <?php die("Access denied"); ?>
+[general]
+title = "Muximux"
+branch = "master"
+enabledropdown = "false"
+
+[settings]
+enabled = "true"
+default = "false"
+name = "Settings"
+url = "muximux.php"
+landingpage = "false"
+icon = "fa-cog"
+dd = "true"
+
+[Plex]
+name = "Plex"
+url = "http://{{ansible_default_ipv4.address}}:32400/web"
+icon = "fa-play-circle"
+enabled = "true"
+default = "true"
+landingpage = "false"
+dd = "false"
+scale = 1
+
+[Sonarr]
+name = "Sonarr"
+url = "http://{{ansible_default_ipv4.address}}:8989"
+icon = "fa-calendar"
+enabled = "true"
+default = "false"
+landingpage = "false"
+dd = "false"
+scale = 1
+
+[Couchpotato]
+name = "CouchPotato"
+url = "http://{{ansible_default_ipv4.address}}:5050"
+icon = "fa-film"
+enabled = "true"
+default = "false"
+landingpage = "false"
+dd = "false"
+scale = 1
+
+[Transmission]
+name = "Transmission"
+url = "http://{{ansible_default_ipv4.address}}:9091"
+icon = "fa-download"
+enabled = "true"
+default = "false"
+landingpage = "false"
+dd = "false"
+scale = 1

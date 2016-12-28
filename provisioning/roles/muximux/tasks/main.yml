@@ -1,0 +1,19 @@
+---
+- user: uid=1001 name=docker group=root
+- name: Create a Muximux container
+  docker_container:
+    name: muximux
+    image: linuxserver/muximux
+    volumes:
+      - "/root/muximux/config:/config"
+    ports:
+      - "80:80"
+    env:
+      PUID: "1001"
+      GUID: "{{GUID}}"
+      TZ: "{{TZ}}"
+
+- name: Allow remote access
+  ufw: src="{{ipify_public_ip}}" port=80 rule=allow
+
+- template: src=settings.ini.php.j2 dest=/root/muximux/config/www/muximux/settings.ini.php owner=docker group=root
