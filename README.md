@@ -40,16 +40,6 @@ Transmission downloads files to `/root/downloads`.  CouchPotato will move files 
 
 ## Configuring
 
-### Plex
-
-You'll need to setup Plex to properly allow outside connections and link to your account.  In order to do that, you'll need to `ssh` tunnel to port `32400`.
-
-```bash
-$ ssh -L 32400:localhost:32400 root@IP_ADDRESS
-```
-
-Then navigate to <http://localhost:32400/web> to configure Plex.
-
 ### Sonarr
 
 You'll want to add [an indexer](https://github.com/Sonarr/Sonarr/wiki/Supported-Indexers) to Sonarr, so it can find content.
