@@ -16,7 +16,7 @@ fi
 
 if ! grep -q "CLAIM_TOKEN: claim-" ./provisioning/group_vars/all.yml; then
   echo "Missing CLAIM_TOKEN from group_vars"
-  read -p "Press Enter to open claim token site..."
+  read -p "Press Enter to open claim token site, past result into ./provisioning/group_vars/all.yml"
   open "https://www.plex.tv/claim/"
   exit 1
 fi
